@@ -1,0 +1,16 @@
+.exercise-details {
+    margin: 1rem;
+}
+
+.btn-edit-exercise {
+    margin-top: 1rem;
+    border: solid 1px #005c7a;
+    color: green;
+    font-size: x-large;
+    text-align: center;
+}
+
+.btn-edit-exercise:hover {
+    background-color: cadetblue;
+    cursor: pointer;
+}

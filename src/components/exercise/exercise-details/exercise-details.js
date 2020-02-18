@@ -11,9 +11,8 @@ export default class ExerciseDetails extends Component {
 
         name: '',
         externalLink: '',
-        index: '',
         instruction: '',
-        timeout: '',
+        recovery: '',
         type: '',
         weight: ''
     };
@@ -22,8 +21,15 @@ export default class ExerciseDetails extends Component {
         if (this.props.exercise !== prevProps.exercise) {
             const { exercise } = this.props;
             this.setState({
-                exercise
+                exercise,
+                name: exercise.name,
+                externalLink: exercise.externalLink,
+                instruction: exercise.instruction,
+                recovery: exercise.recovery,
+                type: exercise.type,
+                weight: exercise.weight
             })
+
         }
     }
 
@@ -32,9 +38,8 @@ export default class ExerciseDetails extends Component {
             id: this.state.exercise.id,
             name: this.state.name,
             externalLink: this.state.externalLink,
-            index: this.state.index,
             instruction: this.state.instruction,
-            timeout: this.state.timeout,
+            recovery: this.state.recovery,
             type: this.state.type,
             weight: this.state.weight
         });
@@ -56,38 +61,83 @@ export default class ExerciseDetails extends Component {
 
     render() {
 
-        const { exercise,
-                editMode,
+        const { editMode } = this.state;
+
+        if (editMode) {
+
+            const {
                 name,
                 externalLink,
-                index,
                 instruction,
-                timeout,
+                recovery,
                 type,
                 weight
-        } = this.state;
+            } = this.state;
+
+            return (
+                <div className="exercise-details">
+                    <form onSubmit={this.handleSubmit}>
+                        <div className="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" value={name} onChange={this.handleChange}/>
+                        </div>
+                        <input type="submit" value="Submit"/>
+                        <input type="button" value="Cancel" onClick={() => this.switchEditMode()} />
+                    </form>
+                </div>
+            )
+        }
+
+        const { exercise } = this.state;
 
         if (exercise === null) {
             return <span>Waiting...</span>
         }
 
-        if (editMode) {
-            return (
-                <form onSubmit={this.handleSubmit}>
-                    <label>
-                        Name:
-                        <input type="text" id="name" value={name} onChange={this.handleChange}/>
-                    </label>
-                    <input type="submit" value="Submit"/>
-                    <input type="button" value="Cancel" onClick={() => this.switchEditMode()} />
-                </form>
-            )
-        }
-
         return (
-            <div>
-                <span>Details of exercise -> id: {exercise.id} | name: {exercise.name} | weight: {exercise.weight}</span>
-                <input type="button" value="Edit" onClick={() => this.switchEditMode()} />
+            <div className="exercise-details">
+                <div className="form-group">
+                    <h2>{exercise.name} | {exercise.type}</h2>
+                </div>
+                {
+                    exercise.externalLink
+                        ?
+                            <div className="form-group">
+                                <h3>External link: <a href={exercise.externalLink}>{exercise.externalLink}</a></h3>
+                            </div>
+                        : ''
+                }
+                {
+                    exercise.weight
+                        ?
+                            <div className="form-group">
+                                <h3>Weight: {exercise.weight} grams</h3>
+                            </div>
+                        : ''
+                }
+                {
+                    exercise.recovery
+                        ?
+                            <div className="form-group">
+                                <h3>Recovery time: {exercise.recovery} secs</h3>
+                            </div>
+                        : ''
+                }
+                {
+                    exercise.instruction
+                        ?
+                            <div className="form-group">
+                                <h3>Instruction:</h3>
+                                <h4>{exercise.instruction}</h4>
+                            </div>
+                        : ''
+                }
+                <div className="form-group">
+                    <div className="btn-edit-exercise"
+                         onClick={() => {this.switchEditMode()}}>
+                        <span>Edit</span>
+                    </div>
+                </div>
             </div>
         )
     }
