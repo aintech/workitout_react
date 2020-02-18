@@ -21,19 +21,14 @@ export default class ExerciseDetails extends Component {
         if (this.props.exercise !== prevProps.exercise) {
             const { exercise } = this.props;
             this.setState({
-                exercise,
-                name: exercise.name,
-                externalLink: exercise.externalLink,
-                instruction: exercise.instruction,
-                recovery: exercise.recovery,
-                type: exercise.type,
-                weight: exercise.weight
+                exercise
             })
-
+            this.defaultState();
         }
     }
 
     handleSubmit = (event) => {
+        console.log(this.state)
         this.props.persistExercise({
             id: this.state.exercise.id,
             name: this.state.name,
@@ -54,10 +49,23 @@ export default class ExerciseDetails extends Component {
     };
 
     switchEditMode = () => {
+        this.defaultState();
         this.setState({
             editMode: !this.state.editMode
         })
     };
+
+    defaultState = () => {
+        const { exercise } = this.props;
+        this.setState({
+            name: exercise.name ? exercise.name : '',
+            externalLink: exercise.externalLink ? exercise.externalLink : '',
+            instruction: exercise.instruction ? exercise.instruction : '',
+            recovery: exercise.recovery ? exercise.recovery : '',
+            type: exercise.type ? exercise.type : '',
+            weight: exercise.weight ? exercise.weight : ''
+        })
+    }
 
     render() {
 
@@ -78,11 +86,40 @@ export default class ExerciseDetails extends Component {
                 <div className="exercise-details">
                     <form onSubmit={this.handleSubmit}>
                         <div className="form-group">
-                            <label for="name">Name</label>
-                            <input type="text" id="name" value={name} onChange={this.handleChange}/>
+                            <label htmlFor="name">Name</label>
+                            <input type="text" className="form-control" id="name" value={name} onChange={this.handleChange}/>
                         </div>
-                        <input type="submit" value="Submit"/>
-                        <input type="button" value="Cancel" onClick={() => this.switchEditMode()} />
+                        <div className="form-group">
+                            <label htmlFor="type">Type</label>
+                            <select className="form-control" id="type" value={type} onChange={this.handleChange}>
+                                <option>Cardio</option>
+                                <option>Hiit</option>
+                                <option>Weight traning</option>
+                            </select>
+                        </div>
+                        <div className="form-group">
+                            <label htmlFor="externalLink">External link</label>
+                            <input type="text" className="form-control" id="externalLink" value={externalLink} onChange={this.handleChange}/>
+                        </div>
+                        <div className="form-group">
+                            <label htmlFor="weight">Weight</label>
+                            <input type="number" className="form-control" id="weight" value={weight} onChange={this.handleChange}/>
+                        </div>
+                        <div className="form-group">
+                            <label htmlFor="recovery">Recovery time</label>
+                            <input type="time" className="form-control" id="recovery" value={recovery} onChange={this.handleChange}/>
+                        </div>
+                        <div className="form-group">
+                            <label htmlFor="instruction">Instruction</label>
+                            <textarea rows="10" className="form-control" id="instruction" value={instruction} onChange={this.handleChange}/>
+                        </div>
+                        <div className="form-group">
+                            <input className="btn-submit-form" type="submit" value="Save"/>
+                            <input className="btn-submit-form"
+                                    type="button"
+                                    onClick={() => {this.switchEditMode()}}
+                                    value="Cancel"/>
+                        </div>
                     </form>
                 </div>
             )
@@ -111,7 +148,7 @@ export default class ExerciseDetails extends Component {
                     exercise.weight
                         ?
                             <div className="form-group">
-                                <h3>Weight: {exercise.weight} grams</h3>
+                                <h3>Weight: {exercise.weight} Kg</h3>
                             </div>
                         : ''
                 }
@@ -119,7 +156,7 @@ export default class ExerciseDetails extends Component {
                     exercise.recovery
                         ?
                             <div className="form-group">
-                                <h3>Recovery time: {exercise.recovery} secs</h3>
+                                <h3>Recovery time: {exercise.recovery}</h3>
                             </div>
                         : ''
                 }
@@ -133,10 +170,10 @@ export default class ExerciseDetails extends Component {
                         : ''
                 }
                 <div className="form-group">
-                    <div className="btn-edit-exercise"
-                         onClick={() => {this.switchEditMode()}}>
-                        <span>Edit</span>
-                    </div>
+                    <input className="btn-edit-exercise"
+                            type="button"
+                            onClick={() => {this.switchEditMode()}}
+                            value="Edit"/>
                 </div>
             </div>
         )

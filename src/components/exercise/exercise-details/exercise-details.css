@@ -8,9 +8,39 @@
     color: green;
     font-size: x-large;
     text-align: center;
+    width: 30%;
+}
+
+.btn-submit-form {
+    margin-top: 1rem;
+    margin-right: 1rem;
+    border: solid 1px #005c7a;
+    color: green;
+    font-size: x-large;
+    text-align: center;
+    width: 30%;
+}
+
+.btn-cancel-form {
+    margin-top: 1rem;
+    border: solid 1px #005c7a;
+    color: green;
+    font-size: x-large;
+    text-align: center;
+    width: 30%;
 }
 
 .btn-edit-exercise:hover {
+    background-color: cadetblue;
+    cursor: pointer;
+}
+
+.btn-submit-form:hover {
+    background-color: cadetblue;
+    cursor: pointer;
+}
+
+.btn-cancel-form:hover {
     background-color: cadetblue;
     cursor: pointer;
 }
