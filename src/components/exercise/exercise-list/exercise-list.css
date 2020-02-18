@@ -1,0 +1,10 @@
+.exercise-list {
+    padding: 1rem;
+}
+
+.btn-add-exercise {
+    margin-top: 1rem;
+    border: solid 1px #005c7a;
+    color: green;
+    font-size: x-large;
+}
