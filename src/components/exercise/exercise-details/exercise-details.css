@@ -1,46 +1,37 @@
 .exercise-details {
-    margin: 1rem;
+    margin-top: 1rem;
+    padding: 1rem;
+    border: #a4d6e7 solid 1px;
 }
 
-.btn-edit-exercise {
+.btn-form {
+    padding: .5rem;
     margin-top: 1rem;
     border: solid 1px #005c7a;
     color: green;
-    font-size: x-large;
+    font-size: larger;
     text-align: center;
-    width: 30%;
+    width: 20%;
+    background-color: white;
 }
 
-.btn-submit-form {
-    margin-top: 1rem;
+.btn-form:hover {
+    background-color: #ffd4b2;
+}
+
+.btn-form.submit {
     margin-right: 1rem;
-    border: solid 1px #005c7a;
-    color: green;
-    font-size: x-large;
-    text-align: center;
-    width: 30%;
 }
 
-.btn-cancel-form {
-    margin-top: 1rem;
-    border: solid 1px #005c7a;
-    color: green;
-    font-size: x-large;
-    text-align: center;
-    width: 30%;
+.btn-form.cancel {
+    color: red;
+    border-color: red;
 }
 
-.btn-edit-exercise:hover {
-    background-color: cadetblue;
-    cursor: pointer;
+.btn-form.cancel:hover {
+    background-color: #9dd4b2;
 }
 
-.btn-submit-form:hover {
-    background-color: cadetblue;
-    cursor: pointer;
-}
-
-.btn-cancel-form:hover {
-    background-color: cadetblue;
-    cursor: pointer;
+.form-group.btn-holder {
+    margin-bottom: 0;
 }

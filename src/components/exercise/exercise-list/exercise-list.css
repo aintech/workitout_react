@@ -1,11 +1,22 @@
 .exercise-list {
-    padding: 1rem;
+    padding-top: 1rem;
+    padding-left: 1rem;
+}
+
+.exercise-list li.list-group-item:hover {
+    background-color: #adb5bd;
 }
 
 .btn-add-exercise {
+    list-style-type: none;
+    padding: .5rem;
     margin-top: 1rem;
     border: solid 1px #005c7a;
     color: green;
-    font-size: x-large;
+    font-size: larger;
     text-align: center;
+}
+
+.btn-add-exercise:hover {
+    background-color: #ffd4b2;
 }

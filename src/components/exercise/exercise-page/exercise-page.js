@@ -60,10 +60,10 @@ export default class ExercisePage extends Component {
             externalLink: exercise.externalLink,
             instruction: exercise.instruction,
             recovery: this.secondsToTime(exercise.recovery),
-            type: exercise.type,
+            type: this.typeConverter(exercise.type, true),
             weight: this.gramsToKilos(exercise.weight)
         }
-    }
+    };
 
     convertToBack = (exercise) => {
         return {
@@ -72,16 +72,23 @@ export default class ExercisePage extends Component {
             externalLink: exercise.externalLink,
             instruction: exercise.instruction,
             recovery: this.timeToSeconds(exercise.recovery),
-            type: exercise.type,
+            type: this.typeConverter(exercise.type, false),
             weight: this.kiloToGrams(exercise.weight)
         }
-    }
+    };
+
+    typeConverter = (type, toFront) => {
+        if (type === null || type === undefined || type === '') {
+            return toFront ? '' : null;
+        }
+        return toFront ? (type.charAt(0) + type.slice(1).toLowerCase()) : type.toUpperCase();
+    };
 
     secondsToTime = (seconds) => {
         const minutes = Math.floor(seconds / 60);
         const secs = seconds - (minutes * 60);
         return (minutes < 10 ? ('0' + minutes) : minutes) + ':' + (secs < 10 ? ('0' + secs) : secs);
-    }
+    };
 
     timeToSeconds = (time) => {
         if (time === null || time === undefined) {
@@ -89,15 +96,15 @@ export default class ExercisePage extends Component {
         }
         const minsSecs = time.split(':');
         return minsSecs[0] * 60 + parseInt(minsSecs[1], 10);
-    }
+    };
 
     gramsToKilos = (grams) => {
         return grams / 1000;
-    }
+    };
 
     kiloToGrams = (kilo) => {
         return kilo * 1000;
-    }
+    };
 
     render() {
         return (

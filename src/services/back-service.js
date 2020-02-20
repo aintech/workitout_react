@@ -22,9 +22,9 @@ export default class BackService {
     };
 
     postResource = async (url, body) => {
+
         console.log(`Resource post: ${this._backUrl}${url}`);
 
-        console.log(body)
         const resource =
             await fetch(
                 `${this._backUrl}${url}`,
@@ -32,7 +32,7 @@ export default class BackService {
                     method: 'post',
                     headers: { 'Content-type': 'application/json' },
                     body: body
-                })
+                });
 
         if (!resource.ok) {
             throw new Error(`Unable to post ${url}, received ${resource.status}`);
@@ -43,13 +43,13 @@ export default class BackService {
 
     getExercises = async () => {
         return await this.getResource("exercise");
-    }
+    };
 
     getExercise = async (id) => {
         return await this.getResource(`exercise/${id}`);
-    }
+    };
 
     persistExercise = async (exercise) => {
         return await this.postResource("exercise", exercise);
-    }
+    };
 }

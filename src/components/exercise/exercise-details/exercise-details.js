@@ -113,9 +113,9 @@ export default class ExerciseDetails extends Component {
                             <label htmlFor="instruction">Instruction</label>
                             <textarea rows="10" className="form-control" id="instruction" value={instruction} onChange={this.handleChange}/>
                         </div>
-                        <div className="form-group">
-                            <input className="btn-submit-form" type="submit" value="Save"/>
-                            <input className="btn-submit-form"
+                        <div className="form-group btn-holder">
+                            <input className="btn-form submit" type="submit" value="Save"/>
+                            <input className="btn-form cancel"
                                     type="button"
                                     onClick={() => {this.switchEditMode()}}
                                     value="Cancel"/>
@@ -169,8 +169,8 @@ export default class ExerciseDetails extends Component {
                             </div>
                         : ''
                 }
-                <div className="form-group">
-                    <input className="btn-edit-exercise"
+                <div className="form-group btn-holder">
+                    <input className="btn-form"
                             type="button"
                             onClick={() => {this.switchEditMode()}}
                             value="Edit"/>

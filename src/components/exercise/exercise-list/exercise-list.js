@@ -42,7 +42,7 @@ export default class ExerciseList extends Component {
                 {items}
                 <li className="btn-add-exercise"
                     onClick={() => this.props.onAddExercise()}>
-                    <span>+</span> Add Exercise
+                    + Add Exercise
                 </li>
             </ul>
         );
