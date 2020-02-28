@@ -1,10 +1,10 @@
-import React, {Component} from 'react';
-
 import './app.css';
+import React, {Component} from 'react';
 import Header from "../header/header";
 import ExercisePage from "../exercise/exercise-page/exercise-page";
 import CalendarPage from "../calendar/calendar-page/calendar-page";
 import WorkoutPage from "../workout/workout-page/workout-page";
+import {BrowserRouter, Route, Switch} from "react-router-dom";
 
 export default class App extends Component {
 
@@ -13,12 +13,12 @@ export default class App extends Component {
     };
 
     onChosePage = (page) => {
-        if (page !== this.state.page) {
-            this.setState({
-                page
-            })
-        }
-        console.log(page)
+        // if (page !== this.state.page) {
+        //     this.setState({
+        //         page
+        //     })
+        // }
+        // console.log(page)
     };
 
     render() {
@@ -36,7 +36,14 @@ export default class App extends Component {
         return (
             <div className="App">
                 <Header onChosePage={this.onChosePage}/>
-                {elementToShow}
+                <BrowserRouter>
+                    <Switch>
+                        <Route path="/" exact component={CalendarPage} />
+                        <Route path="/calendar" component={CalendarPage} />
+                        <Route path="/workout" component={WorkoutPage} />
+                        <Route path="/exercise" component={ExercisePage} />
+                    </Switch>
+                </BrowserRouter>
             </div>
         );
     }

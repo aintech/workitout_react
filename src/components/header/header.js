@@ -8,15 +8,15 @@ export default class Header extends Component {
                 <div className="collapse navbar-collapse">
                     <ul className="navbar nav mr-auto">
                         <li className="nav-item nav-link menu"
-                            onClick={() => this.props.onChosePage('calendar')}>
+                            onClick={() => this.props.onChosePage('/calendar')}>
                             Calendar
                         </li>
                         <li className="nav-item nav-link menu"
-                            onClick={() => this.props.onChosePage('workouts')}>
+                            onClick={() => this.props.onChosePage('/workout')}>
                             Workouts
                         </li>
                         <li className="nav-item nav-link menu"
-                            onClick={() => this.props.onChosePage('exercises')}>
+                            onClick={() => this.props.onChosePage('/exercise')}>
                             Exercises
                         </li>
                     </ul>
