@@ -1,3 +1,7 @@
 .right-bordered {
     border-right: solid 1px #ccc;
 }
+
+.widthed {
+    width: 100%;
+}

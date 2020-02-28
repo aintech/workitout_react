@@ -108,7 +108,7 @@ export default class ExercisePage extends Component {
 
     render() {
         return (
-            <div className="row mb2">
+            <div className="row mb2 widthed">
                 <div className="col-md-2 right-bordered">
                     <ExerciseList
                         exercises={this.state.exercises}
